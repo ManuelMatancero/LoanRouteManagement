@@ -1,0 +1,45 @@
+package com.matancita.yngreni.service;
+
+import com.matancita.yngreni.dao.PrestamoDao;
+import com.matancita.yngreni.domain.Prestamo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Service
+public class PrestamoServiceImpl implements PrestamoService{
+
+    @Autowired
+    PrestamoDao prestamoDao;
+    @Override
+    @Transactional(readOnly = true)
+    public List<Prestamo> listAll() {
+        return prestamoDao.findAll();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Prestamo getById(Prestamo prestamo) {
+        return prestamoDao.getReferenceById(prestamo.getIdPrestamo());
+    }
+
+    @Override
+    @Transactional
+    public void insert(Prestamo prestamo) {
+        prestamoDao.save(prestamo);
+    }
+
+    @Override
+    @Transactional
+    public void update(Prestamo prestamo) {
+        prestamoDao.save(prestamo);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Prestamo prestamo) {
+        prestamoDao.deleteById(prestamo.getIdPrestamo());
+    }
+}

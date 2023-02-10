@@ -21,8 +21,8 @@ public class CobradorServiceImpl implements CobradorService{
 
     @Override
     @Transactional(readOnly = true)
-    public Cobrador getById(Cobrador cobrador) {
-        return cobradorDao.getReferenceById(cobrador.getIdCobrador());
+    public Cobrador getById(Long id) {
+        return cobradorDao.findById(id).orElse(null);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class CobradorServiceImpl implements CobradorService{
     @Override
     @Transactional
     public void delete(Cobrador cobrador) {
-        cobradorDao.deleteById(cobrador.getIdCobrador());
+        cobradorDao.delete(cobrador);
     }
 }

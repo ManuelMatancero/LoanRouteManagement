@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RutaService {
     public List<Ruta> listAll();
-    public Ruta getById(Ruta ruta);
+    public Ruta getById(Long id);
     public void insert(Ruta ruta);
     public void update(Ruta ruta);
     public void delete(Ruta ruta);

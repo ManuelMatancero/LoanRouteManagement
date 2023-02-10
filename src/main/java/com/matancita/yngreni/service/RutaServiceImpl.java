@@ -21,8 +21,8 @@ public class RutaServiceImpl implements RutaService{
 
     @Override
     @Transactional(readOnly = true)
-    public Ruta getById(Ruta ruta) {
-        return rutaDao.getReferenceById(ruta.getIdRuta());
+    public Ruta getById(Long id) {
+        return rutaDao.findById(id).orElse(null);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class RutaServiceImpl implements RutaService{
     @Override
     @Transactional
     public void delete(Ruta ruta) {
-        rutaDao.deleteById(ruta.getIdRuta());
+        rutaDao.delete(ruta);
     }
 }

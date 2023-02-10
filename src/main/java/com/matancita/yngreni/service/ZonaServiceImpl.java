@@ -21,8 +21,8 @@ public class ZonaServiceImpl implements ZonaService {
 
     @Override
     @Transactional(readOnly = true)
-    public Zona getById(Zona zona) {
-        return zonaDao.getReferenceById(zona.getIdZona());
+    public Zona getById(Long id) {
+        return zonaDao.findById(id).orElse(null);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class ZonaServiceImpl implements ZonaService {
     @Override
     @Transactional
     public void delete(Zona zona) {
-        zonaDao.deleteById(zona.getIdZona());
+        zonaDao.delete(zona);
     }
 }

@@ -21,8 +21,8 @@ public class EmpresaServiceImpl implements EmpresaService {
 
     @Override
     @Transactional(readOnly = true)
-    public Empresa getById(Empresa empresa) {
-        return empresaDao.getReferenceById(empresa.getIdEmpresa());
+    public Empresa getById(Long id) {
+        return empresaDao.findById(id).orElse(null);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class EmpresaServiceImpl implements EmpresaService {
     @Override
     @Transactional
     public void delete(Empresa empresa) {
-        empresaDao.deleteById(empresa.getIdEmpresa());
+        empresaDao.delete(empresa);
     }
 }

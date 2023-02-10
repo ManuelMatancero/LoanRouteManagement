@@ -7,7 +7,7 @@ import java.util.List;
 public interface RecibosGenService {
 
     public List<RecibosGen> listAll();
-    public RecibosGen getById(RecibosGen recibosGen);
+    public RecibosGen getById(Long id);
     public void insert(RecibosGen recibosGen);
     public void update(RecibosGen recibosGen);
     public void delete(RecibosGen recibosGen);

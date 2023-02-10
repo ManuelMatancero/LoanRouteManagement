@@ -21,8 +21,8 @@ public class PagareServiceImpl implements PagareService{
 
     @Override
     @Transactional(readOnly = true)
-    public Pagare getById(Pagare pagare) {
-        return pagareDao.getReferenceById(pagare.getIdPagare());
+    public Pagare getById(Long id) {
+        return pagareDao.findById(id).orElse(null);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class PagareServiceImpl implements PagareService{
     @Override
     @Transactional
     public void delete(Pagare pagare) {
-        pagareDao.deleteById(pagare.getIdPagare());
+        pagareDao.delete(pagare);
     }
 }

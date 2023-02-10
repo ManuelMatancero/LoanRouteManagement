@@ -20,8 +20,8 @@ public class RolServiceImpl implements RolService {
 
     @Override
     @Transactional(readOnly = true)
-    public Rol getById(Rol rol) {
-        return rolDao.getReferenceById(rol.getIdRol());
+    public Rol getById(Long id) {
+        return rolDao.findById(id).orElse(null);
     }
 
     @Override
@@ -39,6 +39,6 @@ public class RolServiceImpl implements RolService {
     @Override
     @Transactional
     public void delete(Rol rol) {
-        rolDao.deleteById(rol.getIdRol());
+        rolDao.delete(rol);
     }
 }

@@ -21,8 +21,8 @@ public class RecibosGenServiceImpl implements RecibosGenService{
 
     @Override
     @Transactional(readOnly = true)
-    public RecibosGen getById(RecibosGen recibosGen) {
-        return recibosGenDao.getReferenceById(recibosGen.getIdRecibosGen());
+    public RecibosGen getById(Long id) {
+        return recibosGenDao.findById(id).orElse(null);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class RecibosGenServiceImpl implements RecibosGenService{
     @Override
     @Transactional
     public void delete(RecibosGen recibosGen) {
-        recibosGenDao.deleteById(recibosGen.getIdRecibosGen());
+        recibosGenDao.delete(recibosGen);
     }
 }

@@ -22,8 +22,8 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     @Transactional(readOnly = true)
-    public Usuario getById(Usuario usuario) {
-        return usuarioDao.getReferenceById(usuario.getIdUsuario());
+    public Usuario getById(Long id) {
+        return usuarioDao.findById(id).orElse(null);
     }
 
     @Override
@@ -41,6 +41,6 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Override
     @Transactional
     public void delete(Usuario usuario) {
-        usuarioDao.deleteById(usuario.getIdUsuario());
+        usuarioDao.delete(usuario);
     }
 }

@@ -21,8 +21,8 @@ public class PrestamoServiceImpl implements PrestamoService{
 
     @Override
     @Transactional(readOnly = true)
-    public Prestamo getById(Prestamo prestamo) {
-        return prestamoDao.getReferenceById(prestamo.getIdPrestamo());
+    public Prestamo getById(Long id) {
+        return prestamoDao.findById(id).orElse(null);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class PrestamoServiceImpl implements PrestamoService{
     @Override
     @Transactional
     public void delete(Prestamo prestamo) {
-        prestamoDao.deleteById(prestamo.getIdPrestamo());
+        prestamoDao.delete(prestamo);
     }
 }

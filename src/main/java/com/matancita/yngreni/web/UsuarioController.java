@@ -1,17 +1,12 @@
 package com.matancita.yngreni.web;
 
-import com.matancita.yngreni.dao.UsuarioDao;
 import com.matancita.yngreni.domain.Usuario;
 import com.matancita.yngreni.service.UsuarioService;
-import com.matancita.yngreni.service.UsuarioServiceImpl;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @Transactional
@@ -20,7 +15,6 @@ public class UsuarioController {
 
     @Autowired
     UsuarioService usuarioService;
-
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<?> saveUsuario(@RequestBody Usuario usuario){
@@ -58,7 +52,7 @@ public class UsuarioController {
     public ResponseEntity<?> deleteusuario(@PathVariable Long id){
         Usuario usuario = usuarioService.getById(id);
         usuarioService.delete(usuario);
-        return ResponseEntity.ok("Usuario Eliminad");
+        return ResponseEntity.ok("Usuario Eliminado");
     }
 
 }

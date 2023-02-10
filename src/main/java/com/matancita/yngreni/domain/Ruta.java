@@ -1,5 +1,8 @@
 package com.matancita.yngreni.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,6 +13,8 @@ import java.util.List;
 @Entity
 @Table(name= "ruta")
 @Data
+//Con esta anotacion evito la recursion infinita al listar con el metodo get
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idRuta")
 public class Ruta implements Serializable {
 
 
@@ -33,6 +38,7 @@ public class Ruta implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_cobrador", referencedColumnName = "id_cobrador")
+    @JsonBackReference
     private Cobrador cobrador;
 
     @OneToMany

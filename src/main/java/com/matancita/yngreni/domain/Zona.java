@@ -1,5 +1,7 @@
 package com.matancita.yngreni.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -9,6 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "zona")
 @Data
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idZona")
 public class Zona implements Serializable {
 
     private static final long serialversionUID = 1L;

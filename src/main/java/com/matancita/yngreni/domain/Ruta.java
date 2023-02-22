@@ -38,7 +38,6 @@ public class Ruta implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_cobrador", referencedColumnName = "id_cobrador")
-    @JsonBackReference
     private Cobrador cobrador;
 
     @OneToMany

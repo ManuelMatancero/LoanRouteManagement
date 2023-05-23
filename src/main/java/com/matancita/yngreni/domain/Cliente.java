@@ -13,7 +13,6 @@ import java.util.List;
 @Entity
 @Table(name="cliente")
 @Data
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCliente")
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,10 +56,6 @@ public class Cliente implements Serializable {
     private LocalDateTime fechaIngreso;
 
     private int estatus;
-
-    @ManyToOne
-    @JoinColumn(name = "id_ruta", referencedColumnName = "id_ruta")
-    private Ruta ruta;
 
     @OneToMany
     @JoinColumn(name = "id_cliente")

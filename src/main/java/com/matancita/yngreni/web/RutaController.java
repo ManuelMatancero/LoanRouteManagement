@@ -44,7 +44,6 @@ public class RutaController {
         rutaExist.setNombre(ruta.getNombre());
         rutaExist.setDia(ruta.getDia());
         rutaExist.setZona(ruta.getZona());
-        rutaExist.setCobrador(ruta.getCobrador());
         rutaService.update(rutaExist);
         return  ResponseEntity.ok(rutaExist);
     }

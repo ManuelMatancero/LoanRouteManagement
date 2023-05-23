@@ -16,7 +16,7 @@ public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @PostMapping("/save")
     public ResponseEntity<?> saveUsuario(@RequestBody Usuario usuario){
         usuarioService.insert(usuario);
         return ResponseEntity.ok(usuario);

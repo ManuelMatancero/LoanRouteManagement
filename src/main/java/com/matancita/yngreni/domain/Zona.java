@@ -11,7 +11,6 @@ import java.util.List;
 @Entity
 @Table(name = "zona")
 @Data
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idZona")
 public class Zona implements Serializable {
 
     private static final long serialversionUID = 1L;
@@ -26,11 +25,6 @@ public class Zona implements Serializable {
     private String direccion;
 
     private int estatus;
-
-    @OneToMany
-    @JoinColumn(name = "id_zona")
-    private List<Ruta> rutas;
-
 
 
 }

@@ -47,7 +47,6 @@ public class PrestamoController {
         prestamoExist.setInteres(prestamo.getInteres());
         prestamoExist.setCuotas(prestamo.getCuotas());
         prestamoExist.setAnulado(prestamo.getAnulado());
-        prestamoExist.setCliente(prestamo.getCliente());
         prestamoService.update(prestamoExist);
         return  ResponseEntity.ok(prestamoExist);
     }

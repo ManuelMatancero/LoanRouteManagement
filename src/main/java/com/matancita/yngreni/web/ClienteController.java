@@ -56,7 +56,6 @@ public class ClienteController {
         clienteExist.setObservaciones(cliente.getObservaciones());
         clienteExist.setFechaIngreso(cliente.getFechaIngreso());
         clienteExist.setEstatus(cliente.getEstatus());
-        clienteExist.setRuta(cliente.getRuta());
         clienteService.update(clienteExist);
         return  ResponseEntity.ok(clienteExist);
     }

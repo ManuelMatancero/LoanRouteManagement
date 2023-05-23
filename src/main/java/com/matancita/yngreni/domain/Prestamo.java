@@ -7,11 +7,11 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "prestamo")
 @Data
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idPrestamo")
 public class Prestamo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,9 +36,9 @@ public class Prestamo implements Serializable {
 
     private int anulado;
 
-    @ManyToOne
-    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
-    private Cliente cliente;
+    @OneToMany
+    @JoinColumn(name = "id_prestamo", referencedColumnName = "id_prestamo")
+    private List<Pagare> pagares;
 
 
 

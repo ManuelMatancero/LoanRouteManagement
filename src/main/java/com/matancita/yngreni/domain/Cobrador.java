@@ -38,10 +38,6 @@ public class Cobrador implements Serializable {
     @Column(name="fecha_ingreso")
     private LocalDateTime fechaIngreso;
 
-    @ManyToOne
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    private Usuario usuario;
-
     @OneToMany
     @JoinColumn(name = "id_cobrador")
     @JsonManagedReference

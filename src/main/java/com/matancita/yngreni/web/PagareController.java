@@ -45,7 +45,6 @@ public class PagareController {
         pagareExist.setInteres(pagare.getInteres());
         pagareExist.setTotal(pagare.getTotal());
         pagareExist.setVencimiento(pagare.getVencimiento());
-        pagareExist.setPrestamo(pagare.getPrestamo());
         pagareService.update(pagareExist);
         return  ResponseEntity.ok(pagareExist);
     }

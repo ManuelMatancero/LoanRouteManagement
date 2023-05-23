@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "recibos_gen")
 @Data
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idRecibosGen")
 public class RecibosGen implements Serializable {
 
     private static final long serialVersionUID =1L;
@@ -26,8 +25,4 @@ public class RecibosGen implements Serializable {
     private LocalDateTime fecha;
 
     private double valor;
-
-    @ManyToOne
-    @JoinColumn(name = "id_pagare", referencedColumnName = "id_pagare")
-    private Pagare pagare;
 }

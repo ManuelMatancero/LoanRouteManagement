@@ -30,15 +30,9 @@ public class Ruta implements Serializable {
 
     private String dia;
 
-
     @ManyToOne
     @JoinColumn(name = "id_zona", referencedColumnName = "id_zona")
     private Zona zona;
-
-
-    @ManyToOne
-    @JoinColumn(name = "id_cobrador", referencedColumnName = "id_cobrador")
-    private Cobrador cobrador;
 
     @OneToMany
     @JoinColumn(name = "id_ruta")

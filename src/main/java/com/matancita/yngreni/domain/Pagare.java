@@ -13,7 +13,6 @@ import java.util.List;
 @Entity
 @Table(name = "pagare")
 @Data
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idPagare")
 public class Pagare implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,12 +33,8 @@ public class Pagare implements Serializable {
 
     private LocalDateTime vencimiento;
 
-    @ManyToOne
-    @JoinColumn(name = "id_prestamo", referencedColumnName = "id_prestamo")
-    private Prestamo prestamo;
-
-    @OneToMany
-    @JoinColumn(name = "id_pagare")
-    private List<RecibosGen> recibosGen;
+    @OneToOne
+    @JoinColumn(name = "id_recibo_gen", referencedColumnName = "id_recibos_gen")
+    private RecibosGen reciboGen;
 
 }

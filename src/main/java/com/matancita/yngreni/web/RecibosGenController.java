@@ -44,7 +44,6 @@ public class RecibosGenController {
         RecibosGen recibosGenExist = recibosGenService.getById(id);
         recibosGenExist.setFecha(recibosGen.getFecha());
         recibosGenExist.setValor(recibosGen.getValor());
-        recibosGenExist.setPagare(recibosGen.getPagare());
         recibosGenService.update(recibosGenExist);
         return  ResponseEntity.ok(recibosGenExist);
     }

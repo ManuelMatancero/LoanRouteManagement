@@ -12,7 +12,6 @@ import java.util.List;
 @Entity
 @Data
 @Table(name="usuario")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idUsuario")
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,9 +35,9 @@ public class Usuario implements Serializable {
     @JoinColumn(name="id_empresa", referencedColumnName = "id_empresa")
     private Empresa empresa;
 
-    @OneToMany
-    @JoinColumn(name = "id_usuario")
-    private List<Cobrador> cobradores;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cobrador", referencedColumnName = "id_cobrador")
+    private Cobrador cobrador;
 
 
 }

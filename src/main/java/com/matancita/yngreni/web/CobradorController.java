@@ -50,7 +50,6 @@ public class CobradorController {
         cobradorExist.setDireccion(cobrador.getDireccion());
         cobradorExist.setTelefono(cobrador.getTelefono());
         cobradorExist.setFechaIngreso(cobrador.getFechaIngreso());
-        cobradorExist.setUsuario(cobrador.getUsuario());
         cobradorService.update(cobradorExist);
         return  ResponseEntity.ok(cobradorExist);
     }

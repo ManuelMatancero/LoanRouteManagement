@@ -20,6 +20,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         return (List<Usuario>)usuarioDao.findAll();
     }
 
+
     @Override
     @Transactional(readOnly = true)
     public Usuario getById(Long id) {
@@ -42,5 +43,11 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Transactional
     public void delete(Usuario usuario) {
         usuarioDao.delete(usuario);
+    }
+
+    @Override
+    @Transactional
+    public Usuario findByUsuario(String usuario) {
+        return usuarioDao.findByUsuario(usuario);
     }
 }

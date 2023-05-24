@@ -1,5 +1,6 @@
 package com.matancita.yngreni.web;
 
+import com.matancita.yngreni.DTO.UsuarioLoginDTO;
 import com.matancita.yngreni.domain.Usuario;
 import com.matancita.yngreni.service.UsuarioService;
 import jakarta.transaction.Transactional;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -16,6 +19,23 @@ public class UsuarioController {
 
     @Autowired
     UsuarioService usuarioService;
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUsuario(@RequestBody UsuarioLoginDTO usuarioLoginDTO){
+        //Object to decode password
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        Usuario usuario = usuarioService.findByUsuario(usuarioLoginDTO.getUsuario());
+        if(usuario!=null){
+            if(encoder.matches(usuarioLoginDTO.getPassword(), usuario.getPassword())){
+                return ResponseEntity.ok(usuario);
+            }else{
+                return ResponseEntity.notFound().build();
+
+            }
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @PostMapping("/save")
     public ResponseEntity<?> saveUsuario(@RequestBody Usuario usuario){

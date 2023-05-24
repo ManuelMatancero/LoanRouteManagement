@@ -11,4 +11,6 @@ public interface UsuarioService {
     public void insert(Usuario usuario);
     public void update(Usuario usuario);
     public void delete(Usuario usuario);
+
+    public Usuario findByUsuario(String usuario);
 }

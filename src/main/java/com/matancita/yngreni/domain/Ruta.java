@@ -2,10 +2,12 @@ package com.matancita.yngreni.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,6 +20,7 @@ import java.util.List;
 public class Ruta implements Serializable {
 
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -37,5 +40,10 @@ public class Ruta implements Serializable {
     @OneToMany
     @JoinColumn(name = "id_ruta")
     private List<Cliente> clientes;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cobrador", referencedColumnName = "id_cobrador")
+    private Cobrador cobrador;
+
 
 }

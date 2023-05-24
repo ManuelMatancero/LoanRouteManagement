@@ -12,6 +12,8 @@ import java.util.List;
 @Entity
 @Table(name = "prestamo")
 @Data
+//Con esta anotacion evito la recursion infinita al listar con el metodo get
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idPrestamo")
 public class Prestamo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,6 +42,9 @@ public class Prestamo implements Serializable {
     @JoinColumn(name = "id_prestamo", referencedColumnName = "id_prestamo")
     private List<Pagare> pagares;
 
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
+    private Cliente cliente;
 
 
 }

@@ -33,6 +33,10 @@ public class Pagare implements Serializable {
 
     private LocalDateTime vencimiento;
 
+    @ManyToOne
+    @JoinColumn(name = "id_prestamo", referencedColumnName = "id_prestamo")
+    private Prestamo prestamo;
+
     @OneToOne
     @JoinColumn(name = "id_recibo_gen", referencedColumnName = "id_recibos_gen")
     private RecibosGen reciboGen;

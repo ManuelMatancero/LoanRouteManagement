@@ -8,7 +8,7 @@ public interface PagareService {
 
     public List<Pagare> listAll();
     public Pagare getById(Long id);
-    public void insert(Pagare pagare);
+    public void insertAll(List<Pagare> pagare);
     public void update(Pagare pagare);
     public void delete(Pagare pagare);
 }

@@ -16,8 +16,8 @@ public class PagareController {
     PagareService pagareService;
 
     @PostMapping("/save")
-    public ResponseEntity<?> savePagare(@RequestBody Pagare pagare){
-        pagareService.insert(pagare);
+    public ResponseEntity<?> savePagare(@RequestBody List<Pagare> pagare){
+        pagareService.insertAll(pagare);
         return ResponseEntity.ok(pagare);
     }
 

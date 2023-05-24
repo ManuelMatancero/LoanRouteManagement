@@ -1,7 +1,10 @@
 package com.matancita.yngreni.web;
 
+import com.matancita.yngreni.domain.Pagare;
 import com.matancita.yngreni.domain.Prestamo;
+import com.matancita.yngreni.service.PagareService;
 import com.matancita.yngreni.service.PrestamoService;
+import com.matancita.yngreni.specialfuctions.WeeklyDatesCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +17,22 @@ public class PrestamoController {
 
     @Autowired
     PrestamoService prestamoService;
+    @Autowired
+    PagareService pagareService;
 
     @PostMapping("/save")
     public ResponseEntity<?> savePrestamo(@RequestBody Prestamo prestamo){
+        //Save the prestamo first to get the id
         prestamoService.insert(prestamo);
+        //Here i creates the pagares asociated with that prestamo
+        List<Pagare> pagares = new WeeklyDatesCalculator().weeklyIterator(
+                prestamo.getFecha(),
+                prestamo.getIdPrestamo(),
+                prestamo.getCuotas(),
+                prestamo.getMonto(),
+                prestamo.getInteres());
+        //Now i save the list of pagare
+        pagareService.insertAll(pagares);
         return ResponseEntity.ok(prestamo);
     }
 

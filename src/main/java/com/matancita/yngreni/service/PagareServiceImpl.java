@@ -27,8 +27,8 @@ public class PagareServiceImpl implements PagareService{
 
     @Override
     @Transactional
-    public void insert(Pagare pagare) {
-        pagareDao.save(pagare);
+    public void insertAll(List<Pagare> pagare) {
+        pagareDao.saveAll(pagare);
     }
 
     @Override

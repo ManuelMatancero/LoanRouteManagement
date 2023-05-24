@@ -1,5 +1,11 @@
 Here's the documentation for the provided model and controller:
 
+## How to use
+In order to use the API you must have to instal MySql and MySqlWorkbench, also install JDK Java 17 in your PC.
+
+# Database backup
+In this link you will find the database backup: https://drive.google.com/drive/folders/1BNiIvHlgqOVqZVFOSLGqHvuujO1QX16r?usp=sharing 
+
 ## API Documentation:
 
 ### Model: User

@@ -6,6 +6,10 @@ In order to use the API you must have to instal MySql and MySqlWorkbench, also i
 # Database backup
 In this link you will find the database backup: https://drive.google.com/drive/folders/1BNiIvHlgqOVqZVFOSLGqHvuujO1QX16r?usp=sharing 
 
+# Updates
+To generate recibos of pagares now you have the ```PUT``` endpoint ```pagare/printpagare/{id}``` this receives the id of the pagare that you want to generate and automatically it persist the RecibosGen related to the pagare,
+# When you save a Prestamo it generates the Pagares related to it
+
 ## API Documentation:
 
 ### Model: User

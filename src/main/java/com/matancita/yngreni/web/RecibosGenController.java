@@ -1,6 +1,7 @@
 package com.matancita.yngreni.web;
 
 
+import com.matancita.yngreni.DTO.Messages;
 import com.matancita.yngreni.domain.RecibosGen;
 import com.matancita.yngreni.service.RecibosGenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,17 +43,27 @@ public class RecibosGenController {
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateRecibosGen(@PathVariable Long id, @RequestBody RecibosGen recibosGen){
         RecibosGen recibosGenExist = recibosGenService.getById(id);
-        recibosGenExist.setFecha(recibosGen.getFecha());
-        recibosGenExist.setValor(recibosGen.getValor());
-        recibosGenService.update(recibosGenExist);
-        return  ResponseEntity.ok(recibosGenExist);
+        if(recibosGenExist!=null){
+            recibosGenExist.setFecha(recibosGen.getFecha());
+            recibosGenExist.setValor(recibosGen.getValor());
+            recibosGenService.update(recibosGenExist);
+            return  ResponseEntity.ok(recibosGenExist);
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleterecibosGen(@PathVariable Long id){
         RecibosGen recibosGen = recibosGenService.getById(id);
-        recibosGenService.delete(recibosGen);
-        return ResponseEntity.ok("RecibosGen Eliminado");
+        if(recibosGen!=null){
+            recibosGenService.delete(recibosGen);
+            return ResponseEntity.ok(new Messages("RecibosGen Eliminado"));
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
 }

@@ -1,6 +1,7 @@
 package com.matancita.yngreni.web;
 
 
+import com.matancita.yngreni.DTO.Messages;
 import com.matancita.yngreni.domain.Zona;
 import com.matancita.yngreni.service.ZonaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,17 +42,27 @@ public class ZonaController {
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateZona(@PathVariable Long id, @RequestBody Zona zona){
         Zona zonaExist = zonaService.getById(id);
-        zonaExist.setNombre(zona.getNombre());
-        zonaExist.setDireccion(zona.getDireccion());
-        zonaExist.setEstatus(zona.getEstatus());
-        zonaService.update(zonaExist);
-        return  ResponseEntity.ok(zonaExist);
+        if (zonaExist!=null){
+            zonaExist.setNombre(zona.getNombre());
+            zonaExist.setDireccion(zona.getDireccion());
+            zonaExist.setEstatus(zona.getEstatus());
+            zonaService.update(zonaExist);
+            return  ResponseEntity.ok(zonaExist);
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deletezona(@PathVariable Long id){
         Zona zona = zonaService.getById(id);
-        zonaService.delete(zona);
-        return ResponseEntity.ok("Zona Eliminado");
+        if(zona!=null){
+            zonaService.delete(zona);
+            return ResponseEntity.ok(new Messages("Zona Eliminada"));
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+
     }
 }

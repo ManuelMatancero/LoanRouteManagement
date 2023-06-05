@@ -1,6 +1,7 @@
 package com.matancita.yngreni.web;
 
 
+import com.matancita.yngreni.DTO.Messages;
 import com.matancita.yngreni.domain.Ruta;
 import com.matancita.yngreni.service.RutaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,17 +42,27 @@ public class RutaController {
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateRuta(@PathVariable Long id, @RequestBody Ruta ruta){
         Ruta rutaExist = rutaService.getById(id);
-        rutaExist.setNombre(ruta.getNombre());
-        rutaExist.setDia(ruta.getDia());
-        rutaExist.setZona(ruta.getZona());
-        rutaService.update(rutaExist);
-        return  ResponseEntity.ok(rutaExist);
+        if(rutaExist!=null){
+            rutaExist.setNombre(ruta.getNombre());
+            rutaExist.setDia(ruta.getDia());
+            rutaExist.setZona(ruta.getZona());
+            rutaExist.setCobrador(ruta.getCobrador());
+            rutaService.update(rutaExist);
+            return  ResponseEntity.ok(rutaExist);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteruta(@PathVariable Long id){
         Ruta ruta = rutaService.getById(id);
-        rutaService.delete(ruta);
-        return ResponseEntity.ok("Ruta Eliminado");
+        if(ruta!=null){
+            rutaService.delete(ruta);
+            return ResponseEntity.ok(new Messages("Ruta Eliminada"));
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+
     }
 }

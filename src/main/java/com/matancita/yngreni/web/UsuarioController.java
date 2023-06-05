@@ -1,5 +1,6 @@
 package com.matancita.yngreni.web;
 
+import com.matancita.yngreni.DTO.Messages;
 import com.matancita.yngreni.DTO.UsuarioLoginDTO;
 import com.matancita.yngreni.domain.Usuario;
 import com.matancita.yngreni.service.UsuarioService;
@@ -30,7 +31,6 @@ public class UsuarioController {
                 return ResponseEntity.ok(usuario);
             }else{
                 return ResponseEntity.notFound().build();
-
             }
         }else{
             return ResponseEntity.notFound().build();
@@ -58,7 +58,7 @@ public class UsuarioController {
             usuarioService.insert(usuario);
             return ResponseEntity.ok(usuario);
         }else {
-            return ResponseEntity.ok("The user is already in use");
+            return ResponseEntity.ok(new Messages("The user is already in use"));
         }
 
     }
@@ -106,15 +106,19 @@ public class UsuarioController {
             usuarioService.update(usuarioExist);
             return  ResponseEntity.ok(usuarioExist);
         }else {
-            return ResponseEntity.ok("The user is already in use");
+            return ResponseEntity.ok(new Messages("The user is already in use"));
         }
 
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteusuario(@PathVariable Long id){
         Usuario usuario = usuarioService.getById(id);
-        usuarioService.delete(usuario);
-        return ResponseEntity.ok("Usuario Eliminado");
+        if (usuario != null) {
+            usuarioService.delete(usuario);
+            return ResponseEntity.ok(new Messages("Usuario Eliminado"));
+        }else{
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

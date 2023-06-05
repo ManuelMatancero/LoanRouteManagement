@@ -1,5 +1,6 @@
 package com.matancita.yngreni.web;
 
+import com.matancita.yngreni.DTO.Messages;
 import com.matancita.yngreni.domain.Pagare;
 import com.matancita.yngreni.domain.Prestamo;
 import com.matancita.yngreni.service.PagareService;
@@ -55,22 +56,31 @@ public class PrestamoController {
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updatePrestamo(@PathVariable Long id, @RequestBody Prestamo prestamo){
         Prestamo prestamoExist = prestamoService.getById(id);
-        prestamoExist.setFecha(prestamo.getFecha());
-        prestamoExist.setMonto(prestamo.getMonto());
-        prestamoExist.setTipoPrestamo(prestamo.getTipoPrestamo());
-        prestamoExist.setVencimiento(prestamo.getVencimiento());
-        prestamoExist.setInteres(prestamo.getInteres());
-        prestamoExist.setCuotas(prestamo.getCuotas());
-        prestamoExist.setAnulado(prestamo.getAnulado());
-        prestamoService.update(prestamoExist);
-        return  ResponseEntity.ok(prestamoExist);
+        if(prestamoExist!=null){
+            prestamoExist.setFecha(prestamo.getFecha());
+            prestamoExist.setMonto(prestamo.getMonto());
+            prestamoExist.setTipoPrestamo(prestamo.getTipoPrestamo());
+            prestamoExist.setVencimiento(prestamo.getVencimiento());
+            prestamoExist.setInteres(prestamo.getInteres());
+            prestamoExist.setCuotas(prestamo.getCuotas());
+            prestamoExist.setEstado(prestamo.getEstado());
+            prestamoService.update(prestamoExist);
+            return  ResponseEntity.ok(prestamoExist);
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deletePrestamo(@PathVariable Long id){
         Prestamo prestamo = prestamoService.getById(id);
-        prestamoService.delete(prestamo);
-        return ResponseEntity.ok("Prestamo Eliminado");
+        if(prestamo!=null){
+            prestamoService.delete(prestamo);
+            return ResponseEntity.ok(new Messages("Prestamo Eliminado"));
+        }else{
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

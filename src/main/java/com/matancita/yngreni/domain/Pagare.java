@@ -37,7 +37,7 @@ public class Pagare implements Serializable {
     @JoinColumn(name = "id_prestamo", referencedColumnName = "id_prestamo")
     private Prestamo prestamo;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_recibo_gen", referencedColumnName = "id_recibos_gen")
     private RecibosGen reciboGen;
 

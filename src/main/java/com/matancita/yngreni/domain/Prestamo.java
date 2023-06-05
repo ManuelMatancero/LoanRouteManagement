@@ -36,7 +36,7 @@ public class Prestamo implements Serializable {
 
     private int cuotas;
 
-    private int anulado;
+    private int estado;
 
     @OneToMany
     @JoinColumn(name = "id_prestamo", referencedColumnName = "id_prestamo")

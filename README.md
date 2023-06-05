@@ -440,18 +440,18 @@ Here's the documentation for the fourth module:
 
 ### Model: Prestamo
 
-| Field           | Type            | Description                                |
-|-----------------|-----------------|--------------------------------------------|
-| idPrestamo      | Long            | Unique identifier for the loan              |
-| fecha           | LocalDateTime  | Date of the loan                           |
-| monto           | double          | Loan amount                                |
-| tipoPrestamo    | String          | Type of loan                               |
-| vencimiento     | LocalDateTime  | Loan due date                              |
-| interes         | double          | Loan interest rate                         |
-| cuotas          | int             | Number of installments                      |
-| anulado         | int             | Loan status (anulled, active, etc.)         |
-| pagares         | List            | List of promissory notes associated with the loan |
-| cliente         | Cliente         | Client associated with the loan            |
+| Field        | Type            | Description                                |
+|--------------|-----------------|--------------------------------------------|
+| idPrestamo   | Long            | Unique identifier for the loan              |
+| fecha        | LocalDateTime  | Date of the loan                           |
+| monto        | double          | Loan amount                                |
+| tipoPrestamo | String          | Type of loan                               |
+| vencimiento  | LocalDateTime  | Loan due date                              |
+| interes      | double          | Loan interest rate                         |
+| cuotas       | int             | Number of installments                      |
+| estado       | int             | Loan status (anulled, active, etc.)         |
+| pagares      | List            | List of promissory notes associated with the loan |
+| cliente      | Cliente         | Client associated with the loan            |
 
 
 ### Controllers
@@ -495,7 +495,7 @@ Request Body: `Prestamo`
   "vencimiento": "2023-06-24T10:30:00",
   "interes": 900,
   "cuotas": 13,
-  "anulado": 0,
+  "estado": 0,
   "pagares": [],
   "cliente":{
       "idCliente":1

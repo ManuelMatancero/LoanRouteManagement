@@ -9,8 +9,61 @@ In this link you will find the database backup: https://drive.google.com/drive/f
 # Updates
 To generate recibos of pagares now you have the ```PUT``` endpoint ```pagare/printpagare/{id}``` this receives the id of the pagare that you want to generate and automatically it persist the RecibosGen related to the pagare,
 # When you save a Prestamo it generates the Pagares related to it
+## Ojo a tener en cuenta si se fijan en el diagrama de la base de datos notaran que al crearse un prestamo los pagares relacionados a ese prestamo el API los creara de manera automatica tomando en cuenta los datos que suministren en el body del request, cada pagare tendra un campo que se llama id_recibo_gen este campo sera nulo siempre y cuando el pagare no se haya generado o en otras palabras impreso con el siguiente ENDPOINT: 
+
+```
+/pagare/printpagare/{idPagare}
+
+Este endpoint generara un registro en la tabla registro_gen que estara relacionado al pagare que acaba de generar y entonces el campo id_recibo_gen deja de ser null lo que significa que el pagare ha sido saldado, si tienen algun inconveniente con esta funcionalidad me dejan saber
+```
+
+
+# Consideraciones
+### Cada controlador tiene los mismos endpoints a diferencia de los creados para ciertas operaciones que se definen mas abajo, tenga en cuenta que los endpoints principales siempre seran los siguientes presididos del nombre de la tabla ejemplo (/cliente/save), (/empresa/list), etc. Recordando que los enpoint /save/, /update/ y otros necesitan un json en su cuerpo, pero estos JSOn estaran detallados mas abajo en esta documentacion
+```
+/save: This endpoint creates a new object
+/list: This endpoint lists all object.
+/get/{id}: This endpoint gets a object by its ID.
+/update/{id}: This endpoint updates a object by its ID.
+/delete/{id}: This endpoint deletes a object by its ID.
+
+```
 
 ## API Documentation:
+
+### Model: Empresa
+
+This are the endpoints to the empresa controller ```/empresa/(here goes the endpoint)```
+
+```
+In order to save /empresa/save
+POST /save
+{
+  "nombre": "Acme Corporation",
+  "direccion": "123 Main Street",
+  "telefono": "123-456-7890",
+  "email": "acme@example.com"
+}
+
+In order to get a list of empresas use /empresa/list
+GET /list
+
+In order to get a specific empresa use /empresa/get/{idEmpresa}
+GET /get/1
+
+PUT /update/1
+In order to update an empresa use /empresa/update/{idEmpresa} and the following json structure
+{
+  "nombre": "Acme Corporation 2.0",
+  "direccion": "456 Elm Street",
+  "telefono": "555-678-9012",
+  "email": "acme2@example.com"
+}
+
+To delete use /empresa/delete/{idEmpresa}
+DELETE /delete/1 
+
+```
 
 ### Model: User
 
